@@ -1,8 +1,9 @@
 import { Input, Modal } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function AddNoteModal({ open, saving, onSave, onClose }) {
   const [noteName, setNoteName] = useState('');
+  useEffect(() => setNoteName(''), [open])
   return (
     <Modal
       title="New Note"
