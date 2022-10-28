@@ -24,7 +24,7 @@ const HOTKEYS = {
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
-export default function NoteEditor({ data, onUpdateNote }) {
+export default function NoteEditor({ data, onUpdateNote, user }) {
   const [noteValue, setNoteValue] = useState([{
     type: 'paragraph',
     children: [{ text: '' }]
@@ -47,7 +47,11 @@ export default function NoteEditor({ data, onUpdateNote }) {
     }
   }, [data]);
 
-  const handleDebounceFn = (noteContent, d) => updateNoteMutation.mutate({ ...d, content: JSON.stringify(noteContent) });
+  const handleDebounceFn = (noteContent, d) => updateNoteMutation.mutate({
+    ...d,
+    content: JSON.stringify(noteContent),
+    token: user.accessToken
+  });
   
   // eslint-disable-next-line
   const debounceFn = useCallback(debounce(handleDebounceFn, 2000), []);

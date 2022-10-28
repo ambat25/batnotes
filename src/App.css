@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  overflow-y: hidden;
 }
 .editor-section .editor{
   flex-grow: 1;
@@ -55,4 +56,20 @@
   flex: 250px 1;
   height: 100vh;
   flex-direction: row;
+}
+
+.main-section{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main-section .header{
+  justify-content: flex-end;
+  display: flex;
+  align-items: flex-end;
+}
+
+div[role=textbox] {
+  padding: 10px;
 }

@@ -1,89 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import SideNav from './components/SideNav';
-import NoteEditor from './components/NoteEditor';
-import { Button, Empty } from 'antd';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
+import Reset from "./Reset";
+import Note from "./Note";
+import { auth } from "./config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect } from "react";
 
-import './App.css';
-import 'material-icons/iconfont/material-icons.css';
-import 'antd/dist/antd.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { addNote, getNotes } from './api';
-import AddNoteModal from './components/AddNoteModal';
-
-
-const App = () => {
-  const [notes, setNotes] = useState([])
-  const [selectedNote, setSelectedNote] = useState(null)
-  const { data } = useQuery(["notes"], getNotes);
+function App() {
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    if (data?.data) {
-      setNotes(data?.data)
-    }
-  }, [data]);
+    if (user) {
+      localStorage.setItem('batnotes_token', user.accessToken)
+    };
+  }, [user]);
+  
+  if (loading) return <div>Loading...</div>
 
-  const handleUpdateNote = (data) => {
-    setSelectedNote(data);
-    setNotes(notesList => notesList.map(noteItem => noteItem._id === data._id ? data : noteItem));
-  }
-
-  const [showModal, setModal] = useState(false)
-
-  const addNoteMutation = useMutation(addNote, {
-    onSuccess: (createdNote) => {
-      setSelectedNote(createdNote);
-      setNotes(list => ([createdNote, ...list]));
-      setModal(false);
-    },
-  })
-
-  const handleSave = (title) => addNoteMutation.mutate({ title });
-
-  const handleCloseModal = () => setModal(false)
+  if (error) return <div>Error loading app</div>
 
   return (
-    <div className='app-container'>
-      <SideNav
-        notes={notes}
-        selectedNote={selectedNote}
-        onSelect={setSelectedNote}
-        onAddNote={() => setModal(true)}
-
-      />
-      {
-        selectedNote ?
-          <NoteEditor onUpdateNote={handleUpdateNote} data={{ ...selectedNote }} />
-          :
-          <Empty
-            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-            imageStyle={{
-              height: 60,
-            }}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-            description={
-              <span>
-                No note selected
-              </span>
-            }
-          >
-            <Button onClick={() => setModal(true)} type="primary">Create Note</Button>
-          </Empty>
-      }
-      <AddNoteModal
-        open={showModal}
-        onSave={handleSave}
-        onClose={handleCloseModal}
-        saving={addNoteMutation.isLoading}
-      />
-    </div>
-  )
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/reset" element={<Reset />} />
+          <Route exact path="/note" element={<Note />} />
+        </Routes>
+      </Router>
+  );
 }
-
 export default App;
