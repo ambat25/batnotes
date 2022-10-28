@@ -1,0 +1,56 @@
+.editor-section{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0px 10px;
+}
+.editor-section .editor{
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.editor-section header{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 2px solid #eee;
+}
+.editor-section .title{
+  padding: 10px;
+  margin: 0px;
+}
+
+.note-list{
+  width: 250px;
+  overflow-y: auto;
+  border-right: 2px solid #eee;
+}
+.note-list .note-item{
+  cursor: pointer;
+  border-bottom: 2px solid #eee;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.note-list .selected-note{
+  background-color: #eee;
+}
+.note-item .title{
+  font-weight: 600;
+  font-size: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.note-item .content{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 300;
+  font-size: 14px;;
+
+}
+.app-container{
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
