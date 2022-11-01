@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import SideNav from './components/SideNav';
-import NoteEditor from './components/NoteEditor';
+import SideNav from '../components/SideNav';
+import NoteEditor from '../components/NoteEditor';
 import { Button, Empty } from 'antd';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { auth, logout } from "./config/firebase";
-import './App.css';
-import 'material-icons/iconfont/material-icons.css';
+import { auth, logout } from "../config/firebase";
 import 'antd/dist/antd.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { addNote, getNotes } from './api';
-import AddNoteModal from './components/AddNoteModal';
+import { addNote, getNotes } from '../api';
+import AddNoteModal from '../components/AddNoteModal';
 
 
 const Note = () => {

@@ -2,7 +2,7 @@ import React from 'react'
 
 const NoteItem = ({
   title = '',
-  content = '[]',
+  content = '',
   active = false,
   onSelect = () => null,
   ...rest
@@ -12,7 +12,7 @@ const NoteItem = ({
       {title}
     </div>
     <div className='content'>
-      {content ? JSON.parse(content)?.[0]?.children?.[0]?.text : ''}
+      {content || ''}
     </div>
   </div>)
 }

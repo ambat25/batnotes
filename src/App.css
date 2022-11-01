@@ -6,13 +6,16 @@
 }
 .editor-section .editor{
   flex-grow: 1;
+  display: flex;
   overflow-y: auto;
+  outline: 0px solid transparent;
+  border: 0px;
 }
 .editor-section header{
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid #1890ff11;
 }
 .editor-section .title{
   padding: 10px;
@@ -24,17 +27,17 @@
   flex-direction: column;
   overflow-y: auto;
   width: 250px;
-  border-right: 2px solid #eee;
+  border-right: 2px solid #1890ff11;
 }
 .note-list .note-item{
   cursor: pointer;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid #1890ff11;
   display: flex;
   flex-direction: column;
   padding: 10px;
 }
 .note-list .selected-note{
-  background-color: #eee;
+  background-color: #1890ff22;
 }
 .note-item .title{
   font-weight: 600;
@@ -68,8 +71,114 @@
   justify-content: flex-end;
   display: flex;
   align-items: flex-end;
+  padding: 10px;
 }
 
 div[role=textbox] {
+  padding: 0px;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+.register {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px;
+}
+.register__textBox {
   padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.register__btn {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  background-color: black;
+}
+.register__google {
+  background-color: #4285f4;
+}
+.register div {
+  margin-top: 7px;
+}
+
+
+.reset {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reset__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px;
+}
+.reset__textBox {
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.reset__btn {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  background-color: black;
+}
+.reset div {
+  margin-top: 7px;
+}
+
+
+.login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px;
+}
+.login__textBox {
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.login__btn {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  background-color: black;
+}
+.login__google {
+  background-color: #4285f4;
+}
+.login div {
+  margin-top: 7px;
 }
